@@ -46,3 +46,23 @@ router.post("/" async (req, res) => {
 });
 
 // This section will help update a record by id.
+router.patch("/:id", async (req, res) => {
+    try {
+        const query = { _id: new ObjectId(req.params.id) };
+        const updates = {
+            $set: {
+                name: req.body.name,
+                position: req.body.position,
+                level: req.body.level,
+            },
+        };
+
+        let collection = await db.collection("records");
+        let result = await collection.updateOne(query, updates);
+        res.sendStatus(result).status(200);
+        } catch(err) {
+            console.error(err);
+            res.status(500).send("Error updating record");
+        }
+});
+
