@@ -9,7 +9,7 @@ import Record from "./components/Record";
 import RecordList from "./components/RecordList";
 import './index.css'
 
-const router = createBroswerRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
